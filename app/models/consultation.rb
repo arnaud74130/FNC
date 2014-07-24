@@ -13,6 +13,7 @@
 
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 class Consultation < ActiveRecord::Base
 	has_and_belongs_to_many :etablissements
 	before_destroy {|consultation| consultation.etablissements.clear}
