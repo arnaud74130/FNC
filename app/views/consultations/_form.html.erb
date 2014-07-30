@@ -1,37 +1,27 @@
-<%= form_for(@consultation) do |f| %>
-  <% if @consultation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@consultation.errors.count, "error") %> prohibited this consultation from being saved:</h2>
+<%= simple_nested_form_for @consultation, html: { class: 'form-horizontal' },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  } do |f| %>
 
-      <ul>
-      <% @consultation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.error_notification %>
 
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :libelle %><br>
-    <%= f.text_field :libelle %>
-  </div>
-  <div class="field">
-    <%= f.label :debut %><br>
-    <%= f.date_select :debut %>
-  </div>
-  <div class="field">
-    <%= f.label :fin %><br>
-    <%= f.date_select :fin %>
-  </div>
-  <%= f.fields_for :etablissements do |sf| %>
-      <%= sf.label :nom, "Etablissements" %><br />
-      <%= sf.collection_select :etablissement_ids, Etablissement.all, :id, :nom, {:selected => @consultation.etablissements.map(&:id)}, {multiple: true} %>
-  <% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :code, :hint => "Code Obligatoire" %>
+  <%= f.input :debut %>
+  <%= f.input :fin %>
+  <%= f.association :etablissements, label_method: :nom, value_method: :id %>
+
+  <%= f.fields_for :markets %>
+
+  <p><%= f.link_to_add "Add Market", :markets %></p>
+   <%= f.button :submit %>
 <% end %>
+
+
+<!-- %= f.fields_for :etablissements do |etb_field| % -->
+<!-- %= etb_field.collection_select(:id, @etablissements, :id, :nom, {}, {:multiple => true}) % -->
+<!-- % end % -->
+

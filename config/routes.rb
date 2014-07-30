@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  resources :consultations
+  
+  #get 'add_marche', to: "consultations#add_marche"
+  resources :markets
+
+  resources :fournisseurs
+
+  resources :consultations do
+    get 'etablissements', on: :member
+    get 'markets', on: :member
+  end
 
   resources :etablissements
 

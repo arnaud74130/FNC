@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  raison_sociale: MyString
+  email: MyString
+
+two:
+  code: MyString
+  raison_sociale: MyString
+  email: MyString

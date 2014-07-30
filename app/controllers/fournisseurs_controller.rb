@@ -14,29 +14,29 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class EtablissementsController < ApplicationController
-  before_action :set_etablissement, only: [:show, :edit, :update, :destroy]
+class FournisseursController < ApplicationController
+  before_action :set_fournisseur, only: [:show, :edit, :update, :destroy]
 
   def index
-    @etablissements = Etablissement.all
+    @fournisseurs = Fournisseur.all
   end
 
   def show
   end
 
   def new
-    @etablissement = Etablissement.new
+    @fournisseur = Fournisseur.new
   end
 
   def edit
   end
 
   def create
-    @etablissement = Etablissement.new(etablissement_params)
+    @fournisseur = Fournisseur.new(fournisseur_params)
 
     respond_to do |format|
-      if @etablissement.save
-        format.html { redirect_to @etablissement, notice: 'Etablissement was successfully created.' }
+      if @fournisseur.save
+        format.html { redirect_to @fournisseur, notice: 'Fournisseur was successfully created.' }
       else
         format.html { render :new }
       end
@@ -45,8 +45,8 @@ class EtablissementsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @etablissement.update(etablissement_params)
-        format.html { redirect_to @etablissement, notice: 'Etablissement was successfully updated.' }
+      if @fournisseur.update(fournisseur_params)
+        format.html { redirect_to @fournisseur, notice: 'Fournisseur was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -54,20 +54,20 @@ class EtablissementsController < ApplicationController
   end
 
   def destroy
-    @etablissement.destroy
+    @fournisseur.destroy
     respond_to do |format|
-      format.html { redirect_to etablissements_url, notice: 'Etablissement was successfully destroyed.' }
+      format.html { redirect_to fournisseurs_url, notice: 'Fournisseur was successfully destroyed.' }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_etablissement
-      @etablissement = Etablissement.find(params[:id])
+    def set_fournisseur
+      @fournisseur = Fournisseur.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def etablissement_params
-      params.require(:etablissement).permit(:nom)
+    def fournisseur_params
+      params.require(:fournisseur).permit(:code, :raison_sociale, :email)
     end
 end

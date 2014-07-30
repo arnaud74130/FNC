@@ -1,6 +1,6 @@
 #     EPSILIM - EPSILIM - Gestion des fiches de non conformité
 #     Copyright (C) 2014  Arnaud GARCIA - GCS EPSILIM
-#
+#                         
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
@@ -14,9 +14,10 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+class Market < ActiveRecord::Base
+	belongs_to :fournisseur
+	belongs_to :consultation
+	accepts_nested_attributes_for :fournisseur
 
+	validates_presence_of :code
 end
