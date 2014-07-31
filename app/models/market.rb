@@ -20,4 +20,7 @@ class Market < ActiveRecord::Base
 	accepts_nested_attributes_for :fournisseur
 
 	validates_presence_of :code
+	def fournisseur_nom
+		self.fournisseur.nom if fournisseur
+	end
 end

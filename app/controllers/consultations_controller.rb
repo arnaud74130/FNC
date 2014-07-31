@@ -16,7 +16,7 @@
 
 class ConsultationsController < ApplicationController
   before_action :set_consultation, only: [:show, :edit, :update, :destroy]
-  autocomplete :fournisseur, :nom
+  autocomplete :fournisseur, :nom, :full => true
 
   def add_marche
     respond_to do |format|
@@ -76,6 +76,6 @@ class ConsultationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def consultation_params   
-    params.require(:consultation).permit(:code, :libelle, :debut, :fin,:etablissement_ids => [], :markets_attributes => [:id, :code, :fournisseur, :_destroy])
+    params.require(:consultation).permit(:code, :libelle, :debut, :fin,:etablissement_ids => [], :markets_attributes => [:id, :code, :fournisseur_id, :_destroy])
   end  
 end

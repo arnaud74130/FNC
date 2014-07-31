@@ -1,3 +1,4 @@
+
 <%= simple_nested_form_for @consultation, html: { class: 'form-horizontal' },
   wrapper: :horizontal_form,
   wrapper_mappings: {
@@ -15,13 +16,7 @@
   <%= f.association :etablissements, label_method: :nom, value_method: :id %>
 
   <%= f.fields_for :markets %>
-
   <p><%= f.link_to_add "Add Market", :markets %></p>
    <%= f.button :submit %>
 <% end %>
-
-
-<!-- %= f.fields_for :etablissements do |etb_field| % -->
-<!-- %= etb_field.collection_select(:id, @etablissements, :id, :nom, {}, {:multiple => true}) % -->
-<!-- % end % -->
 
