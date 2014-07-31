@@ -1,2 +1,3 @@
-<%= f.input :code, :hint => "Code obligatoire" %>
+<%= f.input :code %>
+<%= f.autocomplete_field :fournisseur, autocomplete_fournisseur_nom_consultations_path %>
 <%= f.link_to_remove "Supprimer le marché" %>

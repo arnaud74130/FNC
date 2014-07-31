@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  
-  #get 'add_marche', to: "consultations#add_marche"
+ 
   resources :markets
 
   resources :fournisseurs
 
   resources :consultations do
-    get 'etablissements', on: :member
-    get 'markets', on: :member
+    #get 'etablissements', on: :member
+    #get 'markets', on: :member
+    get :autocomplete_fournisseur_nom, :on => :collection
   end
 
   resources :etablissements

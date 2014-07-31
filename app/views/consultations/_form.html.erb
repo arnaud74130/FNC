@@ -9,7 +9,7 @@
 
   <%= f.error_notification %>
 
-  <%= f.input :code, :hint => "Code Obligatoire" %>
+  <%= f.input :code %>
   <%= f.input :debut %>
   <%= f.input :fin %>
   <%= f.association :etablissements, label_method: :nom, value_method: :id %>
