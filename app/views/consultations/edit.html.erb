@@ -1,6 +1,5 @@
-<h1>Editing consultation</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @consultation %> |
-<%= link_to 'Back', consultations_path %>
+<%= render "shared/bandeau", titre: "Edition", texte: "Mise à jour d'une consultation" %>
+<div class="container">
+  <%= render 'form' %>
+  <%= destroy @consultation %>
+</div>

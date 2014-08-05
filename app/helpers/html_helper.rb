@@ -16,11 +16,25 @@
 
 
 module HtmlHelper
+  def error_notification(model)
+  #    <% if @type_financement.errors.any? %>
+  #   <div id="error_explanation">
+  #     <h2><%= pluralize(@type_financement.errors.count, "error") %> prohibited this type_financement from being saved:</h2>
+
+  #     <ul>
+  #     <% @type_financement.errors.full_messages.each do |msg| %>
+  #       <li><%= msg %></li>
+  #     <% end %>
+  #     </ul>
+  #   </div>
+  # <% end %>
+    
+  end
   def link_button(path, default_options={}, options={}, btn_class_name)
     options=options.reverse_merge(default_options)
     link_to t('.#{btn_class_name}', :default => t("helpers.links.#{btn_class_name}")), path, options
   end
-  
+
   def back(path, options = {})
     link_button(path, {:class => 'btn btn-default'}, options, "back")
   end
@@ -39,7 +53,60 @@ module HtmlHelper
                        :class => 'btn btn-danger btn-lg btn-block' }
     link_button(path, default_options, options, "destroy")
   end
+ def edit(path,options={})    
+    link_button(path, {:class => 'btn btn-warning'}, options, "edit")
+  end  
   def edit_small(path, options={})
     link_button(path, {:class => 'btn btn-warning btn-small'}, options, "edit")
+  end
+  
+  # --------------------- Horizontal FORM (hf) ---------------------
+  def hf_field(form, method, *args, html_field_options)
+    label = form.label(args[0], :class => "col-sm-2 control-label")
+    # args << {class: "form-control"}
+    html_field_options = {:class => "form-control"}.reverse_merge(html_field_options)
+    method_field = form.send(method, *args, html_field_options)
+    method_field_div = content_tag(:div, :class => "col-sm-10") { method_field }
+    # --------------------- Horizontal FORM (hf) ---------------------
+    content_tag(:div, :class => "form-group") do
+      label + method_field_div
+    end
+  end
+
+  def hf_number_field(form, field, html_field_options={})
+    hf_field(form, :number_field, field,html_field_options)
+  end
+
+  def hf_text_field(form, field, html_field_options={})
+    hf_field(form, :text_field, field, html_field_options)
+  end
+  def hf_text_area(form, field, html_field_options={})
+    hf_field(form, :text_area, field, html_field_options)
+  end
+  def hf_password_field(form, field, html_field_options={})
+    hf_field(form, :password_field, field, html_field_options)
+  end
+
+  def hf_date_select(form, field, html_field_options={})
+    hf_field(form, :date_select, field, html_field_options)
+  end
+
+  def hf_cancel_submit(form, path)
+
+    cancel_button = cancel path
+    submit_button = form.submit nil, class: 'btn btn-warning'
+    espace="&nbsp;&nbsp;&nbsp;&nbsp;".html_safe
+    method_field_div = content_tag(:div, cancel_button + espace +submit_button, class: "col-sm-offset-2 col-sm-10")
+
+    content_tag(:div, method_field_div, class: "form-group")
+  end
+
+  def hf_check_box(form, field, html_field_options={})
+    hf_field(form, :check_box, field, html_field_options)
+  end
+
+  def hf_select_with_collection(form, field, collection)
+    #f.select :type_charge_id, options_from_collection_for_select(@type_charges, 'id', 'nom', @charge.type_charge_id)
+    hf_field(form, :select, field, collection, {})
   end
 end

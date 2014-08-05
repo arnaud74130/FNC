@@ -1,3 +1,13 @@
+
+#TODO
+ - html_helper :
+ 	- ajouter la gestion des erreurs: error_notification(@fournisseur)
+ - Model
+ 	- validates ! et répercussion dans le formulaire 	
+ - Validation des utilisateurs ? ou non création et donc blocage de l'action
+
 # DEVISE
-Penser à configurer devise pour la prod: config/environnements/production.rb
+ - Configurer devise pour la prod: config/environnements/production.rb
 	config.action_mailer.default_url_options = { host: 'localhost:3000' }
+	... avec les paramètres de mails (smtp, port, etc.)
+	

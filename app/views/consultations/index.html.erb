@@ -10,26 +10,20 @@
       <th>Libelle</th>
       <th>Debut</th>
       <th>Fin</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @consultations.each do |consultation| %>
       <tr>
-        <td><%= consultation.code %></td>
+        <td><%= link_to consultation.code, consultation %></td>
         <td><%= consultation.libelle %></td>
         <td><%= consultation.debut %></td>
         <td><%= consultation.fin %></td>
-        <td><%= link_to 'Show', consultation %></td>
-        <td><%= link_to 'Edit', edit_consultation_path(consultation) %></td>
-        <td><%= link_to 'Destroy', consultation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= edit edit_consultation_path(consultation) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'Nouvelle Consultation', new_consultation_path %>
 </div>

@@ -1,24 +1,12 @@
-<div class="container">
-  <div class="panel panel-info">
-    <div class="panel-heading">Consulation</div>
-    <div class="panel-body">
-      <%= simple_nested_form_for @consultation, as: 'user_horizontal', html: { class: 'form-horizontal' },
-  wrapper: :horizontal_form,
-  wrapper_mappings: {
-    check_boxes: :horizontal_radio_and_checkboxes,
-    radio_buttons: :horizontal_radio_and_checkboxes,
-    file: :horizontal_file_input,
-    boolean: :horizontal_boolean
-  } do |f| %>
-        <%= f.error_notification %>
-        <%= f.input :code %>
-        <%= f.input :debut %>
-        <%= f.input :fin %>
-        <%= f.association :etablissements, label_method: :nom, value_method: :id %>
-        <%= f.fields_for :markets %>
-        <p><%= f.link_to_add "Add Market", :markets %></p>
-        <%= f.button :submit %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= nested_form_for(@consultation, html: {class: "form-horizontal", role: "form"}) do |f| %>
+  <%= error_notification(@consultation) %>
+  <%= hf_text_field(f,:code) %>
+  <%= hf_date_select(f, :debut) %>
+  <%= hf_date_select(f, :fin) %>
+  <%= f.collection_check_boxes(:etablissement_ids, @etablissements, :id, :nom) %>
+
+  <%= f.fields_for :markets %>
+  <p><%= f.link_to_add "Ajout d'un marché", :markets %></p>
+
+  <%= hf_cancel_submit(f, consultations_path) %>
+<% end %>

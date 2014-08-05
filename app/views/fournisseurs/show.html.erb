@@ -1,19 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Code:</strong>
-  <%= @fournisseur.code %>
-</p>
-
-<p>
-  <strong>Raison sociale:</strong>
-  <%= @fournisseur.nom %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @fournisseur.email %>
-</p>
-
-<%= link_to 'Edit', edit_fournisseur_path(@fournisseur) %> |
-<%= link_to 'Back', fournisseurs_path %>
+<%= render "shared/bandeau", titre: "Fournisseur", texte: "Liste des informations associées." %>
+<div class="container">
+  <p>
+    <strong>Code:</strong>
+    <%= @fournisseur.code %>
+  </p>
+  <p>
+    <strong>Raison sociale:</strong>
+    <%= @fournisseur.nom %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @fournisseur.email %>
+  </p>
+  <%= back fournisseurs_path %>
+  <%= edit edit_fournisseur_path(@fournisseur) %>
+</div>

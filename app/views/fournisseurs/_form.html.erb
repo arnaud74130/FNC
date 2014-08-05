@@ -1,22 +1,6 @@
-<div class="container">
-
-  <div class="panel panel-info">
-    <div class="panel-heading">Fournisseur</div>
-    <div class="panel-body">
-      <%= simple_form_for @fournisseur, as: 'user_horizontal', html: { class: 'form-horizontal' },
-  wrapper: :horizontal_form,
-  wrapper_mappings: {
-    check_boxes: :horizontal_radio_and_checkboxes,
-    radio_buttons: :horizontal_radio_and_checkboxes,
-    file: :horizontal_file_input,
-    boolean: :horizontal_boolean
-  } do |f| %>
-        <%= f.error_notification %>
-        <%= f.input :code %>
-        <%= f.input :nom %>
-        <%= f.input :email %>
-        <%= f.button :submit %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= form_for(@fournisseur, html: {class: "form-horizontal", role: "form"}) do |f| %>
+  <%= error_notification(@fournisseur) %>
+  <%= hf_text_field(f,:code) %>
+  <%= hf_text_field(f,:nom) %>
+  <%= hf_text_field(f,:email) %>
+<% end %>

@@ -1,9 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Nom:</strong>
-  <%= @etablissement.nom %>
-</p>
-
-<%= link_to 'Edit', edit_etablissement_path(@etablissement) %> |
-<%= link_to 'Back', etablissements_path %>
+<%= render "shared/bandeau", titre: "Etablissement", texte: "Liste des informations associées." %>
+<div class="container">
+  <p>
+    <strong>Nom:</strong>
+    <%= @etablissement.nom %>
+  </p>
+  <%= back etablissements_path %>
+  <%= edit edit_etablissement_path(@etablissement) %>
+</div>

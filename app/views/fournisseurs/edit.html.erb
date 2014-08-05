@@ -1,6 +1,5 @@
-<h1>Editing fournisseur</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @fournisseur %> |
-<%= link_to 'Back', fournisseurs_path %>
+<%= render "shared/bandeau", titre: "Edition", texte: "Mise à jour d'un fournisseur" %>
+<div class="container">
+  <%= render 'form' %>
+  <%= destroy @fournisseur %>
+</div>
