@@ -1,4 +1,6 @@
+
 <% market_fournisseur_id = SecureRandom.uuid %>
+
 <%= f.input :code %>
 <%= f.input :fournisseur_nom, url: autocomplete_fournisseur_nom_consultations_path, as: :autocomplete, :input_html => {id_element: "##{market_fournisseur_id}"} %>
 <%= f.input :fournisseur_id, as: :hidden, input_html: {id: "#{market_fournisseur_id}"} %>
