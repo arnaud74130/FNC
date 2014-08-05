@@ -1,12 +1,9 @@
-<h2>Renvoyez le mail pour déverrouiller mon compte</h2>
-
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div><%= f.submit "Renvoyer" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<%= render "shared/bandeau", titre: "Déverrouiller", texte: "Renvoyez le mail pour déverrouiller mon compte" %>
+<div class="container">
+  <%= bootstrap_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.email_field :email, autofocus: true %>
+    <%= f.submit "Renvoyer" %>
+  <% end %>
+  <%= render "devise/shared/links" %>
+</div>
