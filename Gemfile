@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
 
+gem 'bootstrap_form'
 
 
 # Use Uglifier as compressor for JavaScript assets

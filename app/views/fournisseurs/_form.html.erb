@@ -1,6 +1,7 @@
-<%= form_for(@fournisseur, html: {class: "form-horizontal", role: "form"}) do |f| %>
+<%= bootstrap_form_for(@fournisseur) do |f| %>
   <%= error_notification(@fournisseur) %>
-  <%= hf_text_field(f,:code) %>
-  <%= hf_text_field(f,:nom) %>
-  <%= hf_text_field(f,:email) %>
+  <%= f.text_field :code %>
+  <%= f.text_field :nom %>
+  <%= f.email_field :email %>
+  <%= f.submit %>
 <% end %>

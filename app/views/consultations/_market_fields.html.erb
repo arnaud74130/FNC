@@ -1,5 +1,5 @@
 <% market_fournisseur_id = SecureRandom.uuid %>
-<%= hf_text_field(f,:code) %>
+<%= f.text_field :code %>
 <%= f.autocomplete_field :fournisseur_nom, autocomplete_fournisseur_nom_consultations_path,id_element: "##{market_fournisseur_id}" %>
 <%= f.hidden_field :fournisseur_id, id: "#{market_fournisseur_id}" %>
 <%= f.link_to_remove "Supprimer le marché" %>

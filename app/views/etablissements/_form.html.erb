@@ -1,5 +1,5 @@
-<%= form_for(@etablissement, html: {class: "form-horizontal", role: "form"}) do |f| %>
-  <%= error_notification(@etablissement) %>
-  <%= hf_text_field(f,:nom) %>
-  <%= hf_cancel_submit(f, etablissements_path) %>
+<%= bootstrap_form_for(@etablissement) do |f| %>
+
+  <%= f.text_field :nom %>
+  <%= f.submit %>
 <% end %>
