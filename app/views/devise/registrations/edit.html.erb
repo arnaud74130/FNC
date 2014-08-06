@@ -1,5 +1,5 @@
-<%= render "shared/bandeau", titre: "Modifier <%= resource_name.to_s.humanize %>", texte: "" %>
 
+<%= render "shared/bandeau", titre: "Modifier #{resource_name.to_s.humanize}", texte: "" %>
 <div class="container">
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -15,10 +15,10 @@
     <%= f.password_field :password, autocomplete: "off" %>
     <i>(Laisser vide si vous ne voulez pas le changer)</i><br />
 
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
 
     <%= f.password_field :current_password, autocomplete: "off" %>
-    <i>(Vous devez saisir votre mot de passe courant pour confirmer vos changement)</i>
+    <i>(Vous devez saisir votre mot de passe courant pour confirmer vos changement)</i><br />
 
   <%= f.submit "Update" %>
 <% end %>

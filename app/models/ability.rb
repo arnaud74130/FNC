@@ -45,23 +45,22 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
-
-    #   if user.has_role? :admin
-    #    # an admin can do everything
-    #     can :manage, :all
-    #   elsif user.has_role? :editor
-    #     # an editor can do everything to documents and reports
-    #     can :manage, [Document, Report]
-    #     # but can only read, create and update charts (ie they cannot
-    #     # be destroyed or have any other actions from the charts_controller.rb
-    #     # executed)
-    #     can [:read, :create, :update], Chart
-    #     # an editor can only view the annual report
-    #     can :read, AnnualReport
-    #   elsif user.has_role? :guest
-    #     can :read, [Document, Report, Chart]
-    #   end
-    # end
+# if user.role? :super_admin
+#       can :manage, :all
+#     elsif user.role? :product_admin
+#       can :manage, [Product, Asset, Issue]
+#     elsif user.role? :product_team
+#       can :read, [Product, Asset]
+#       # manage products, assets he owns
+#       can :manage, Product do |product|
+#         product.try(:owner) == user
+#       end
+#       can :manage, Asset do |asset|
+#         asset.assetable.try(:owner) == user
+#       end
+#     end
+#   end
+   
 
     user ||= User.new
 
@@ -71,7 +70,10 @@ class Ability
     end
 
     if user.has_role? :client
-      can :read, :all
+      can :read, Etablissement
+      can :read, Fournisseur
+      #can :manage, Consultation, :etablissement_idSSS => user.etablissement_id
+      # utiliser plutot un bloc afin de tester tous les établissements rattachés
     end
 
   end
