@@ -19,6 +19,9 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.email %></strong> with roles : <strong><%= current_user.role_symbols %></strong>.
+<% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
@@ -26,6 +29,12 @@
     <%= yield %>
 
     <%= debug(params) if Rails.env.development? %>
-    <%= link_to "Log out", destroy_user_session_path %>
+<% if user_signed_in? %>
+  <%= link_to 'Editer son profil', edit_user_registration_path %> |
+  <%= link_to "Quitter", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Nouvel utilisateur", new_user_registration_path %> |
+  <%= link_to "S'authentifier", new_user_session_path %>
+<% end %>
   </body>
 </html>

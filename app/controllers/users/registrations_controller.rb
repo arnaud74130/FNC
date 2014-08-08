@@ -9,12 +9,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-
     @User = User.new(users_params)
 
     respond_to do |format|
       if @User.save
-        format.html { redirect_to @User, notice: 'Utilisateur ajouté.' }
+        format.html { redirect_to root_url, notice: 'Utilisateur ajouté.' }
       else
         format.html { render :new }
       end
@@ -24,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def users_params
     params.require(:user).permit(:email, :password, :password_confirmation, :entreprise_id, :entreprise_type, :roles)
   end
-  
+
   def autocomplete_entreprise_nom
     term = params[:term]
     entreprises_etb = Etablissement.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a
