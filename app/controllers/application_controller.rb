@@ -29,8 +29,8 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    #redirect_to root_url, :alert => exception.message
-    render file: "#{Rails.root}/public/403", formats: [:html], status: 403, layout: false
+    redirect_to main_app.root_url, :alert => exception.message
+    #render file: "#{Rails.root}/public/403", formats: [:html], status: 403, layout: false
   end
 
 end

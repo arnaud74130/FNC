@@ -72,6 +72,8 @@ class Ability
     if user.has_role? :client
       can :read, Etablissement
       can :read, Fournisseur
+      can :read, Consultation
+      
       #can :manage, Consultation, :etablissement_idSSS => user.etablissement_id
       # utiliser plutot un bloc afin de tester tous les établissements rattachés
     end

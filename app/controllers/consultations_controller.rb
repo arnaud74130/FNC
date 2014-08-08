@@ -15,7 +15,7 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class ConsultationsController < ApplicationController
-  #load_and_authorize_resource
+  load_and_authorize_resource
   
   before_action :set_consultation, only: [:show, :edit, :update, :destroy]
   autocomplete :fournisseur, :nom, :full => true

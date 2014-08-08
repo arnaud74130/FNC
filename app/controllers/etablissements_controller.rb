@@ -15,6 +15,7 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class EtablissementsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_etablissement, only: [:show, :edit, :update, :destroy]
 
   def index
