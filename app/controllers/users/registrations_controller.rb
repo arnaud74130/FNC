@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def users_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :entreprise_id, :entreprise_type, :roles)
+    params.require(:user).permit(:email, :password,:password_confirmation, :entreprise_id, :entreprise_type, :role)
   end
 
   def autocomplete_entreprise_nom

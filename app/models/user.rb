@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable, :omniauthable, :registerable
   devise :database_authenticatable, :recoverable, :registerable,
     :rememberable, :trackable, :validatable
-
+  
   belongs_to :entreprise, polymorphic: true
 
   include RoleModel
@@ -33,4 +33,16 @@ class User < ActiveRecord::Base
   # declare the valid roles -- do not change the order if you add more
   # roles later, always append them at the end!
   roles :grc, :client, :fournisseur
+  def entreprise_nom
+    self.entreprise.nom if self.entreprise
+  end
+
+  def role
+    self.roles.first.to_s if self.roles
+  end
+
+  def role=(new_role)
+    puts "====> ADD NEW ROLE #{new_role}"
+    self.roles = [new_role.to_sym]
+  end
 end
