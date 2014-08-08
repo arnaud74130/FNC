@@ -77,6 +77,13 @@ class Ability
       #can :manage, Consultation, :etablissement_idSSS => user.etablissement_id
       # utiliser plutot un bloc afin de tester tous les établissements rattachés
     end
-
+   if user.has_role? :fournisseur
+      can :read, Etablissement
+      can :read, Fournisseur
+      can :read, Consultation
+      
+      #can :manage, Consultation, :etablissement_idSSS => user.etablissement_id
+      # utiliser plutot un bloc afin de tester tous les établissements rattachés
+    end
   end
 end

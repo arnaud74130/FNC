@@ -1,6 +1,7 @@
 
 <% if current_user.has_role? :grc %>
 <%= builder.autocomplete_field :entreprise_nom, users_autocomplete_entreprise_nom_path ,:update_elements => {:id => '#user_entreprise_id', :entreprise_type => '#user_entreprise_type'} %>
+  <i>Veuillez taper les premières lettres de l'établissement ou du fournisseur...</i>
   <%= builder.hidden_field :entreprise_id, id: "user_entreprise_id" %>
   <%= builder.hidden_field :entreprise_type, id: "user_entreprise_type" %>
 
@@ -21,5 +22,7 @@
     <blockquote>
   <p>Pour changer votre entreprise d'appartenance ou vos droits d'accès veuillez contacter l'admistrateur du site.</p>
 </blockquote>
-  </div>
+</div>
 <% end %>
+
+

@@ -17,8 +17,7 @@
 
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
 
-    <%= f.password_field :current_password, autocomplete: "off" %>
-    <i>(Vous devez saisir votre mot de passe courant pour confirmer vos changement)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %><i>(Vous devez saisir votre mot de passe courant pour confirmer vos changement)</i><br />
 
 <%= render partial: 'entreprise_role' , locals: {builder: f}%>
 
