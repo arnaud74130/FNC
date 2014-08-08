@@ -16,4 +16,5 @@
 
 class Fournisseur < ActiveRecord::Base
 	has_many :markets, :dependent => :delete_all
+	has_many :users, as: :entreprise, dependent: :delete_all
 end

@@ -16,8 +16,11 @@
 
 class Etablissement < ActiveRecord::Base
 	before_save :pretty_name
-	has_and_belongs_to_many :consultations	
+	has_and_belongs_to_many :consultations
+	has_many :users, as: :entreprise, dependent: :delete_all
+
 	before_destroy {|etablissement| etablissement.consultations.clear}
+	
 	def pretty_name
 		self.nom=nom.upcase
 	end

@@ -4,8 +4,15 @@
     <%= devise_error_messages! %>
     <%= f.email_field :email, autofocus: true %>
     <%= f.password_field :password, autocomplete: "off" %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    <%= f.collection_radio_buttons(:etablissement, Etablissement.all, :id, :nom) %>
+    <%= f.password_field :password_confirmation, autocomplete: "off"%>
+    <%= f.label "Entreprise" %><br/>
+    <%= f.autocomplete_field :entreprise, users_autocomplete_entreprise_nom_path ,:update_elements => {:id => '#user_entreprise_id', :entreprise_type => '#user_entreprise_type'} %>
+    <%= f.hidden_field :entreprise_id, id: "user_entreprise_id" %>
+    <%= f.hidden_field :entreprise_type, id: "user_entreprise_type" %>
+
+    <%= f.collection_radio_buttons :roles, User.valid_roles, :to_s, :to_s,
+      {:selected => @user.roles.map(&:to_s)} %>
+
     <%= f.submit "Inscription" %>
   <% end %>
   <%= render "devise/shared/links" %>

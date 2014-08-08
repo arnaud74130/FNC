@@ -1,8 +1,36 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :check_permissions, :only => [:new, :create, :cancel]
   skip_before_filter :require_no_authentication
- 
+
+  autocomplete :entreprise, :nom, :extra_data => [:entreprise_type]
+
   def check_permissions
     authorize! :create, resource
   end
+
+  def create
+
+    @User = User.new(users_params)
+
+    respond_to do |format|
+      if @User.save
+        format.html { redirect_to @User, notice: 'Utilisateur ajouté.' }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
+  def users_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :entreprise_id, :entreprise_type, :roles)
+  end
+  
+  def autocomplete_entreprise_nom
+    term = params[:term]
+    entreprises_etb = Etablissement.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a
+    entreprises_f = Fournisseur.where('nom LIKE ?', "%#{term}%").order(:nom).all.to_a
+    entreprises = entreprises_etb + entreprises_f
+    render :json => entreprises.map { |entreprise| {id: entreprise.id, label: entreprise.nom, value: entreprise.nom, entreprise_type: entreprise.class.name} }
+  end
+
 end

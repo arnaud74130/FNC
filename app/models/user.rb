@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :omniauthable, :registerable
   devise :database_authenticatable, :recoverable, :registerable,
-   :rememberable, :trackable, :validatable
+    :rememberable, :trackable, :validatable
+
+  belongs_to :entreprise, polymorphic: true
 
   include RoleModel
 

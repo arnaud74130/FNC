@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
  
-  #devise_for :users
-  devise_for :users,  :controllers => { :registrations => "users/registrations" }
+  devise_for :users, :controllers => { :registrations => "users/registrations" } 
+  devise_scope :user do
+   get "users/autocomplete_entreprise_nom" => "users/registrations#autocomplete_entreprise_nom"
+  end
   resources :markets
 
   resources :fournisseurs
